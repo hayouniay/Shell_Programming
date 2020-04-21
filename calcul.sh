@@ -20,13 +20,42 @@ RightOp="$1";
 Op="$2";
 leftOp="$3";
 
+set -x
 verif_parameters(){
-  if ! [ $# != "$MaxArguments" ]; then
+  echo $#
+  if [ "$#" != "$MaxArguments" ]; then
       echo "[CALCUL]: ${Red}ERROR${Reset} - Must verify parameters";
+      break;
   fi
-  if [ $op != *[/_*+]* ]; then
+  if ! echo "$1$3" | grep -E "^[0-9]{2,}$" > /dev/null; then
+    echo "[CALCUL]: ${Red}ERROR${Reset} - Operators must be integers";
+    break;
+  fi
+  if ! echo "$Op" | grep -E "^(\+|\-|\/|\*){1}$" > /dev/null
+  then
     echo "[CALCUL]: ${Red}ERROR${Reset} - Operation must be in (+ - * /)";
+    break;
   fi
 }
 
-verif_parameters $RightOp $Op $leftOp;
+calcul(){
+  case "$Op" in
+    "/")
+      if [ $leftOp -eq 0 ]; then
+        echo "[CALCUL]: ${Red}ERROR${Reset} - Operation not permitted";
+        result=0;
+        break;
+      else
+        result=$(($RightOp $Op $leftOp));
+      fi
+      ;;
+    *)
+     result=$(($RightOp $Op $leftOp));
+     ;;
+  esac
+  echo "$result";
+}
+
+
+verif_parameters $RightOp $Op $leftOp
+calcul
