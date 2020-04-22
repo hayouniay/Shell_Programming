@@ -31,16 +31,18 @@ first_factorial() {
 }
 
 second_factorial() {
-echo kkkk
+  fact=$(( $number \- 1 ))
+  fact=$(second_factorial $fact)
+  fact=$(($number \* $fact ))
+
+  echo "[FACTORIAL]: ${Green}SUCCESS${Reset} - factorial($number)=$fact";
 }
-
-
 
 #main
 verif_parameters $number
 
 if [ $number -eq 0 ] || [ $number -eq 1 ]; then
-  echo "[FACTORIAL]: ${Red}SUCCESS${Reset} - factorial($number)=1";
+  echo "[FACTORIAL]: ${Green}SUCCESS${Reset} - factorial($number)=1";
 else
   echo "[FACTORIAL] ${Yellow}INFO${Reset} - you need to identify method to calcualte [1/2]:"
   read -p "choice: " choice
