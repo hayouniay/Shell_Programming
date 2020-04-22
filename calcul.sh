@@ -4,25 +4,13 @@
 
 #!/bin/bash
 
-# For logging level
-# Reset
-Reset='\033[0m'       # Text Reset
-
-# Regular Colors
-Red='\033[0;31m'          # Red
-Green='\033[0;32m'        # Green
-Yellow='\033[0;33m'       # Yellow
-Blue='\033[0;34m'         # Blue
-White='\033[0;37m'        # White
-
 MaxArguments=3
 RightOp="$1";
 Op="$2";
 leftOp="$3";
+. ./color.sh
 
-set -x
 verif_parameters(){
-  echo $#
   if [ "$#" != "$MaxArguments" ]; then
       echo "[CALCUL]: ${Red}ERROR${Reset} - Must verify parameters";
       break;
@@ -53,7 +41,7 @@ calcul(){
      result=$(($RightOp $Op $leftOp));
      ;;
   esac
-  echo "$result";
+  echo "[CALCUL]: ${Green}SUCCESS${Reset} $RightOp$Op$leftOp=$result";
 }
 
 
