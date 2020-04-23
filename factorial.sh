@@ -9,11 +9,11 @@ number=$1
 verif_parameters(){
   if [ "$#" != 1 ]; then
       echo "[FACTORIAL]: ${Red}ERROR${Reset} - Must verify parameters";
-      break;
+      exit;
   fi
   if ! echo "$number" | grep -E "^[0-9]{1,}$" > /dev/null; then
     echo "[FACTORIAL]: ${Red}ERROR${Reset} - Must be an integer";
-    break;
+    exit;
   fi
 }
 
