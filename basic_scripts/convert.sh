@@ -1,27 +1,38 @@
-#######################################
-#  Change from decimal to binary and  #
-#   from binary to decimal base       #
-#######################################
+# ------------------------------------------------------------------
+# [Author] Aymen HAYOUNI
+#          Description
+#
+#          Change from decimal to binary and
+#          from binary to decimal base
+#
+# Dependency:
+#     color.sh
+# ------------------------------------------------------------------
 
 #!/bin/bash
 . ./color.sh
+VERSION=0.1.0
+USAGE="Usage: `basename "$0"` integer base[optionnal]"
 number="$1"
 base=$2
 
+# --- Option processing --------------------------------------------
 Usage(){
   if [ "$#" != 1 ]; then
       echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
-      exit;
+      echo "[CONVERT]: ${Red}ERROR${Reset} - $USAGE"
+      exit 1;
   fi
 }
 
-####################################
-# Used to convert decimal to       #
-# any base (2, 8 , 16)             #
-####################################
+# ------------------------------------------------------------------
+# Description: Used to convert decimal to any base (2, 8 , 16)
+# Arguments: $number: the value to be converted to basename
+#            $base: the base (2, 8, 16)
+# Output: decimal number
+# ------------------------------------------------------------------
 decimatobase (){
    value=$number
-
    while [ $value -ne 0 ]
    do
       result=$(( $value % $base ))$result
@@ -43,10 +54,12 @@ decimatobase (){
   esac
  }
 
- ####################################
- # Used to convert from any base to #
- # Deciam (10 base)                 #
- ####################################
+ # ------------------------------------------------------------------
+ # Description: Used to convert any base (2, 8 , 16) to decimal
+ # Arguments: $number: basename number
+ #            $base: the base (2, 8, 16)
+ # Output: decimal number
+ # ------------------------------------------------------------------
 basetodecimal (){
   result=`echo "obase=10; ibase=$base; $number" | bc`
   case $base in
@@ -65,6 +78,12 @@ basetodecimal (){
  esac
 }
 
+# ------------------------------------------------------------------
+# Description: Used to convert decimal to binary
+# Arguments: $number: the value to be converted to basename
+#
+# Output: decimal number
+# ------------------------------------------------------------------
 decimaltobinary() {
   value=$number
   while [ $value -ne 0 ]
@@ -75,12 +94,18 @@ decimaltobinary() {
   echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Binary[$result]";
 }
 
+# ------------------------------------------------------------------
+# Description: Used to convert binary to decimal
+# Arguments: $number: the value to be converted to decimal
+#
+# Output: binary number
+# ------------------------------------------------------------------
 binarytodecimal() {
   result=`echo "obase=10; ibase=2; $number" | bc`
   echo "[CONVERT]: ${Green}SUCCESS${Reset} - Bnary[$number]==>Decimal[$result]";
 }
 
-#Main
+# Main -------------------------------------------------------------
 Usage $number
 echo "[CONVERT] ${Yellow}INFO${Reset} - you need to identify opration [D/B/DO/OD]:"
 read -p "choice: " choice
@@ -94,16 +119,15 @@ else
   echo "[CONVERT]: ${Yellow}ONFO${Reset} - Using Default conversion : DECIMAL To OTHER";
     if [ "$#" != 2 ]; then
         echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
-        exit;
+        exit 1;
     fi
     decimatobase $number $base
   elif [ `echo "$choice" | tr '/a-z/' '/A-Z/'` = "OD" ]; then
     echo "[CONVERT]: ${Yellow}ONFO${Reset} - Using Default conversion : OTHER To DECIMAL";
       if [ "$#" != 2 ]; then
           echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
-          exit;
+          exit 1;
       fi
       basetodecimal $number $base
   fi
-
 fi
