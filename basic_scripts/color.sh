@@ -1,3 +1,13 @@
+# ------------------------------------------------------------------
+# [Author] Aymen HAYOUNI
+#          Description
+#
+#          Conatins usuful commun methods used for the others
+#          scripts
+#
+# Dependency:
+#     NA
+# ------------------------------------------------------------------
 #!/bin/bash
 
 # For logging level
