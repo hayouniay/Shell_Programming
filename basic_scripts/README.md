@@ -3,17 +3,17 @@ Simple Bash scripts
 
 A *Bash* scripting files incorporating best practices & several useful algorithms.
 
-
+s
 Files
 -----
 
 | File            | Description                                                                                     |
 | --------------- |------------------------------------------------------------------------------------------------ |
-| **calcul.sh**   | contains basic aritmitics operations ( + - * /)                                                 |
+| **calcul.sh**   | contains basic arithmetic operations ( + - * /)                                                 |
 | **color.sh**    | Designed for sourcing into scripts; contains only those functions unlikely to need modification |
 | **convert.sh**  | Sample script to convert decimal <=> any base (2, 8 and 19)                                     |
 | **factorial.sh**| Sample script to calculate factorial number                                                     |
-| **main.sh**     | Main file conatins all scripts (needs to be modified)                                            |
+| **main.sh**     | Main file contains all scripts (needs to be modified)                                            |
 
 Usage
 -----

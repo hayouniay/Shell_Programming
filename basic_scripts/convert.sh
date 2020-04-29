@@ -19,8 +19,8 @@ base=$2
 # --- Option processing --------------------------------------------
 Usage(){
   if [ "$#" != 1 ]; then
-      echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
-      echo "[CONVERT]: ${Red}ERROR${Reset} - $USAGE"
+      echo "[CONVERT]: [${Red}ERROR${Reset}] - Must verify parameters";
+      echo "[CONVERT]: [${Red}ERROR${Reset}] - $USAGE"
       exit 1;
   fi
 }
@@ -40,17 +40,17 @@ decimatobase (){
    done
    case $base in
      "2")
-        echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Binary[$result]"
+        echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Decimal[$number]==>Binary[$result]"
         ;;
      "8")
-        echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Octal[$result]"
+        echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Decimal[$number]==>Octal[$result]"
         ;;
      "16")
-        echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Hexadecimal[$result]"
+        echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Decimal[$number]==>Hexadecimal[$result]"
         ;;
       "*")
-         echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Pther[$result]"
-         ;;
+        echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Decimal[$number]==>Pther[$result]"
+        ;;
   esac
  }
 
@@ -64,17 +64,17 @@ basetodecimal (){
   result=`echo "obase=10; ibase=$base; $number" | bc`
   case $base in
     "2")
-       echo "[CONVERT]: ${Green}SUCCESS${Reset} - Bnary[$number]==>Decimal[$result]"
+       echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Bnary[$number]==>Decimal[$result]"
        ;;
     "8")
-       echo "[CONVERT]: ${Green}SUCCESS${Reset} - Octal[$number]==>Decimal[$result]"
+       echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Octal[$number]==>Decimal[$result]"
        ;;
     "16")
-       echo "[CONVERT]: ${Green}SUCCESS${Reset} - Hexadecimal[$number]==>Decimal[$result]"
+       echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Hexadecimal[$number]==>Decimal[$result]"
        ;;
      "*")
-        echo "[CONVERT]: ${Green}SUCCESS${Reset} - Other[$number]==>Decimal[$result]"
-        ;;
+       echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Other[$number]==>Decimal[$result]"
+       ;;
  esac
 }
 
@@ -91,7 +91,7 @@ decimaltobinary() {
     result=$(( $value % 2 ))$result #residual is next digit
     value=$(( $value / 2 ))
   done
-  echo "[CONVERT]: ${Green}SUCCESS${Reset} - Decimal[$number]==>Binary[$result]";
+  echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Decimal[$number]==>Binary[$result]";
 }
 
 # ------------------------------------------------------------------
@@ -102,12 +102,12 @@ decimaltobinary() {
 # ------------------------------------------------------------------
 binarytodecimal() {
   result=`echo "obase=10; ibase=2; $number" | bc`
-  echo "[CONVERT]: ${Green}SUCCESS${Reset} - Bnary[$number]==>Decimal[$result]";
+  echo "[CONVERT]: [${Green}SUCCESS${Reset}] - Bnary[$number]==>Decimal[$result]";
 }
 
 # Main -------------------------------------------------------------
 Usage $number
-echo "[CONVERT] ${Yellow}INFO${Reset} - you need to identify opration [D/B/DO/OD]:"
+echo "[CONVERT] [${Yellow}INFO${Reset}] - you need to identify opration [D/B/DO/OD]:"
 read -p "choice: " choice
 
 if [ `echo "$choice" | tr '/a-z/' '/A-Z/'` = "B" ]; then
@@ -116,16 +116,16 @@ elif [ `echo "$choice" | tr '/a-z/' '/A-Z/'` = "D" ]; then
   binarytodecimal $number;
 else
   if [ `echo "$choice" | tr '/a-z/' '/A-Z/'` = "DO" ]; then
-  echo "[CONVERT]: ${Yellow}ONFO${Reset} - Using Default conversion : DECIMAL To OTHER";
+  echo "[CONVERT]: [${Yellow}ONFO${Reset}] - Using Default conversion : DECIMAL To OTHER";
     if [ "$#" != 2 ]; then
-        echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
+        echo "[CONVERT]: [${Red}ERROR${Reset}] - Must verify parameters";
         exit 1;
     fi
     decimatobase $number $base
   elif [ `echo "$choice" | tr '/a-z/' '/A-Z/'` = "OD" ]; then
-    echo "[CONVERT]: ${Yellow}ONFO${Reset} - Using Default conversion : OTHER To DECIMAL";
+    echo "[CONVERT]: [${Yellow}ONFO${Reset}] - Using Default conversion : OTHER To DECIMAL";
       if [ "$#" != 2 ]; then
-          echo "[CONVERT]: ${Red}ERROR${Reset} - Must verify parameters";
+          echo "[CONVERT]: [${Red}ERROR${Reset}] - Must verify parameters";
           exit 1;
       fi
       basetodecimal $number $base
