@@ -3,7 +3,6 @@ Simple Bash scripts samples
 
 A *Bash* scripting files incorporating best practices & several useful algorithms.
 
-s
 Files
 -----
 
@@ -28,5 +27,3 @@ The following steps outline what's typically involved to help you get started:
 
 License
 -------
-
-to be added
