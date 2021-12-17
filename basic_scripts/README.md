@@ -1,5 +1,5 @@
-Simple Bash scripts
-====================
+Simple Bash scripts samples
+===========================
 
 A *Bash* scripting files incorporating best practices & several useful algorithms.
 
