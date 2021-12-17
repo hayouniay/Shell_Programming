@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------
-# [Author] Aymen HAYOUNI
+# [Author] @Aymen HAYOUNI
 #          Description
 #
 #          This script aims to simulaate all basic operations
